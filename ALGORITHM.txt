@@ -1,0 +1,136 @@
+2. Neural Network for Stock Price Prediction
+Algorithm: Neural Network
+Model: Pre-trained model (Stock Predictions Model.keras)
+This is likely a Recurrent Neural Network (RNN) or Long Short-Term Memory (LSTM) network, which are commonly used for time-series forecasting.
+Usage:
+The model is used to predict future stock prices based on the last 100 days of scaled data.
+
+
+
+1. Data Preprocessing Algorithms:
+
+Data Normalization: MinMaxScaler (scaling data to a range between 0 and 1).
+Sliding Window Technique: Creating input-output pairs using the last 100 days of data for time-series analysis
+
+
+Prediction Algorithm:
+
+Neural Network Model:
+Pre-trained model (Stock Predictions Model.keras), likely using:
+Recurrent Neural Network (RNN) or
+Long Short-Term Memory (LSTM) layers (commonly used for time-series forecasting).
+
+
+Data Normalization using MinMaxScaler:
+
+python
+Copy code
+scaler = MinMaxScaler(feature_range=(0, 1))
+data_test_scaled = scaler.fit_transform(data_test)
+
+
+2. Moving Averages (MA50, MA100, MA200)
+Calculating Moving Averages:
+python
+Copy code
+ma_50_days = data.Close.rolling(50).mean()
+ma_100_days = data.Close.rolling(100).mean()
+ma_200_days = data.Close.rolling(200).mean()
+
+
+3. Neural Network Prediction Algorithm
+Loading Pre-Trained Model:
+
+python
+Copy code
+model = load_model("C:/Users/srish/Desktop/project/Stock Predictions Model.keras")
+(Line: 6)
+
+Model Prediction:
+
+python
+Copy code
+predicted_price = model.predict(x)
+(Line: 78)
+
+
+
+4. Rescaling Algorithm
+Inverse Scaling for Predictions and Actual Values:
+python
+Copy code
+scale = 1 / scaler.scale_
+predicted_price = predicted_price * scale
+y = y * scale
+
+
+
+This Python script is designed to build a Stock Market Predictor using Streamlit, a web app framework, and a pre-trained deep learning model for stock price forecasting. Below is a breakdown of each part of the code:
+
+2. Loading the Pre-Trained Model
+python
+Copy code
+model = load_model("C:/Users/srish/Desktop/project/Stock Predictions Model.keras")
+A pre-trained deep learning model is loaded from the specified file path. This model is used later to predict stock prices.
+
+Importing Libraries
+numpy and pandas: For numerical and data manipulation tasks.
+yfinance: To fetch historical stock data.
+keras.models.load_model: To load the pre-trained Keras model.
+streamlit: For building an interactive web app.
+matplotlib.pyplot: For plotting charts.
+sklearn.preprocessing.MinMaxScaler: For normalizing and scaling data to improve model performance.
+
+
+Common Timeframes
+Short-Term Moving Averages (e.g., 10, 20, or 50 days):
+
+Used to identify short-term trends.
+Helps in determining entry and exit points for trades.
+Medium-Term Moving Averages (e.g., 100 days):
+
+Useful for observing intermediate price trends.
+Long-Term Moving Averages (e.g., 200 days):
+
+Used to assess overall market trends and long-term direction.
+Uses of Moving Averages in Analysis
+Trend Analysis:
+
+Identifying whether a stock is in an upward, downward, or sideways trend.
+Support and Resistance:
+
+Prices often "bounce off" the moving average lines, acting as a support (in uptrend) or resistance (in downtrend).
+Golden Cross and Death Cross:
+
+Golden Cross: When a short-term MA (e.g., 50-day) crosses above a long-term MA (e.g., 200-day), indicating a bullish trend.
+Death Cross: When a short-term MA crosses below a long-term MA, indicating a bearish trend.
+Crossover Strategy:
+
+Buy or sell signals occur when short-term and long-term moving averages cross each other.
+Example
+A 50-day moving average will calculate the average closing price of the stock for the past 50 days and plot it as a line. This line moves as each new day's closing price is added to the calculation.
+
+SLIDING WINDOW
+Generate Inputs (X) and Targets (Y):
+
+X (Features): Contains the data in the current window.
+Y (Target): The value immediately following the window (the value to be predicted)
+Stock Price Prediction:
+
+Use past N days of prices to predict the next day's price
+
+
+
+
+
+The stock prediction app has practical applications in solving real-life problems related to financial planning, investment decisions, and market analysis.
+
+1. Informed Investment Decisions
+Problem: Investors struggle to predict future stock prices and trends, leading to potential losses.
+Solution:
+The app can provide data-driven insights into price movements, helping investors make buy, sell, or hold decisions.
+For example, if the model predicts an upward trend for a stock, investors may decide to buy and hold.
+2. Risk Management
+Problem: Investors face challenges in assessing the risk of stock investments.
+Solution:
+The app can identify downtrends or price volatility in the stock market, helping investors mitigate risks by diversifying their portfolios or setting stop-loss limits.
